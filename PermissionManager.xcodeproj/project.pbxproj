@@ -10,6 +10,10 @@
 		F5EA6EE71F6EB7E00034DB17 /* PermissionManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EA6EDD1F6EB7E00034DB17 /* PermissionManager.framework */; };
 		F5EA6EEC1F6EB7E00034DB17 /* PermissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EEB1F6EB7E00034DB17 /* PermissionManagerTests.swift */; };
 		F5EA6EEE1F6EB7E00034DB17 /* PermissionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EA6EE01F6EB7E00034DB17 /* PermissionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5EA6EFA1F6EB8440034DB17 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EF91F6EB8440034DB17 /* PermissionType.swift */; };
+		F5EA6EFC1F6EB8820034DB17 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EFB1F6EB8820034DB17 /* PermissionStatus.swift */; };
+		F5EA6EFE1F6EB8D20034DB17 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EFD1F6EB8D20034DB17 /* PermissionManager.swift */; };
+		F5EA6F001F6ECFCD0034DB17 /* PermissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EFF1F6ECFCD0034DB17 /* PermissionState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 		F5EA6EE61F6EB7E00034DB17 /* PermissionManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PermissionManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5EA6EEB1F6EB7E00034DB17 /* PermissionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManagerTests.swift; sourceTree = "<group>"; };
 		F5EA6EED1F6EB7E00034DB17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5EA6EF91F6EB8440034DB17 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
+		F5EA6EFB1F6EB8820034DB17 /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
+		F5EA6EFD1F6EB8D20034DB17 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		F5EA6EFF1F6ECFCD0034DB17 /* PermissionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +79,11 @@
 		F5EA6EDF1F6EB7E00034DB17 /* PermissionManager */ = {
 			isa = PBXGroup;
 			children = (
-				F5EA6EE01F6EB7E00034DB17 /* PermissionManager.h */,
-				F5EA6EE11F6EB7E00034DB17 /* Info.plist */,
+				F5EA6EF81F6EB80C0034DB17 /* Supporting Files */,
+				F5EA6EFD1F6EB8D20034DB17 /* PermissionManager.swift */,
+				F5EA6EF91F6EB8440034DB17 /* PermissionType.swift */,
+				F5EA6EFB1F6EB8820034DB17 /* PermissionStatus.swift */,
+				F5EA6EFF1F6ECFCD0034DB17 /* PermissionState.swift */,
 			);
 			path = PermissionManager;
 			sourceTree = "<group>";
@@ -84,6 +95,15 @@
 				F5EA6EED1F6EB7E00034DB17 /* Info.plist */,
 			);
 			path = PermissionManagerTests;
+			sourceTree = "<group>";
+		};
+		F5EA6EF81F6EB80C0034DB17 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F5EA6EE01F6EB7E00034DB17 /* PermissionManager.h */,
+				F5EA6EE11F6EB7E00034DB17 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +168,7 @@
 				TargetAttributes = {
 					F5EA6EDC1F6EB7E00034DB17 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					F5EA6EE51F6EB7E00034DB17 = {
@@ -196,6 +217,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5EA6EFC1F6EB8820034DB17 /* PermissionStatus.swift in Sources */,
+				F5EA6EFA1F6EB8440034DB17 /* PermissionType.swift in Sources */,
+				F5EA6F001F6ECFCD0034DB17 /* PermissionState.swift in Sources */,
+				F5EA6EFE1F6EB8D20034DB17 /* PermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +359,7 @@
 		F5EA6EF21F6EB7E00034DB17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -346,6 +372,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.kazal.framework.PermissionManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -354,6 +381,7 @@
 		F5EA6EF31F6EB7E00034DB17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -374,6 +402,7 @@
 		F5EA6EF51F6EB7E00034DB17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PermissionManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -387,6 +416,7 @@
 		F5EA6EF61F6EB7E00034DB17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PermissionManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
