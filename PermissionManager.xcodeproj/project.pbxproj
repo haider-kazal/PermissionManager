@@ -14,6 +14,10 @@
 		F5EA6EFC1F6EB8820034DB17 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EFB1F6EB8820034DB17 /* PermissionStatus.swift */; };
 		F5EA6EFE1F6EB8D20034DB17 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EFD1F6EB8D20034DB17 /* PermissionManager.swift */; };
 		F5EA6F001F6ECFCD0034DB17 /* PermissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6EFF1F6ECFCD0034DB17 /* PermissionState.swift */; };
+		F5EA6F021F6EEDD10034DB17 /* PermissionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EA6F011F6EEDD10034DB17 /* PermissionStore.swift */; };
+		F5ED6E351F6FEFCD003CC215 /* PermissionManager.swift in Headers */ = {isa = PBXBuildFile; fileRef = F5EA6EFD1F6EB8D20034DB17 /* PermissionManager.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5ED6E3D1F702041003CC215 /* PermissionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ED6E3C1F702041003CC215 /* PermissionRequest.swift */; };
+		F5ED6E3F1F7020C2003CC215 /* PermissionClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ED6E3E1F7020C2003CC215 /* PermissionClasses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,9 @@
 		F5EA6EFB1F6EB8820034DB17 /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
 		F5EA6EFD1F6EB8D20034DB17 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		F5EA6EFF1F6ECFCD0034DB17 /* PermissionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionState.swift; sourceTree = "<group>"; };
+		F5EA6F011F6EEDD10034DB17 /* PermissionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStore.swift; sourceTree = "<group>"; };
+		F5ED6E3C1F702041003CC215 /* PermissionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequest.swift; sourceTree = "<group>"; };
+		F5ED6E3E1F7020C2003CC215 /* PermissionClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionClasses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +88,12 @@
 			children = (
 				F5EA6EF81F6EB80C0034DB17 /* Supporting Files */,
 				F5EA6EFD1F6EB8D20034DB17 /* PermissionManager.swift */,
-				F5EA6EF91F6EB8440034DB17 /* PermissionType.swift */,
-				F5EA6EFB1F6EB8820034DB17 /* PermissionStatus.swift */,
+				F5ED6E3E1F7020C2003CC215 /* PermissionClasses.swift */,
 				F5EA6EFF1F6ECFCD0034DB17 /* PermissionState.swift */,
+				F5ED6E3C1F702041003CC215 /* PermissionRequest.swift */,
+				F5EA6EFB1F6EB8820034DB17 /* PermissionStatus.swift */,
+				F5EA6EF91F6EB8440034DB17 /* PermissionType.swift */,
+				F5EA6F011F6EEDD10034DB17 /* PermissionStore.swift */,
 			);
 			path = PermissionManager;
 			sourceTree = "<group>";
@@ -114,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5EA6EEE1F6EB7E00034DB17 /* PermissionManager.h in Headers */,
+				F5ED6E351F6FEFCD003CC215 /* PermissionManager.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,9 +228,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ED6E3D1F702041003CC215 /* PermissionRequest.swift in Sources */,
 				F5EA6EFC1F6EB8820034DB17 /* PermissionStatus.swift in Sources */,
 				F5EA6EFA1F6EB8440034DB17 /* PermissionType.swift in Sources */,
 				F5EA6F001F6ECFCD0034DB17 /* PermissionState.swift in Sources */,
+				F5ED6E3F1F7020C2003CC215 /* PermissionClasses.swift in Sources */,
+				F5EA6F021F6EEDD10034DB17 /* PermissionStore.swift in Sources */,
 				F5EA6EFE1F6EB8D20034DB17 /* PermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +382,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PermissionManager/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.kazal.framework.PermissionManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -390,6 +405,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PermissionManager/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.kazal.framework.PermissionManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

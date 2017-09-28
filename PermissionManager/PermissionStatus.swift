@@ -6,11 +6,11 @@
 //  Copyright © 2017 Haider Ali Kazal. All rights reserved.
 //
 
-public enum PermissionStatus: CustomStringConvertible {
-    case authorized
-    case denied
-    case notDetermined
-    case restricted
+public enum PermissionStatus: String, CustomStringConvertible {
+    case authorized     = "authorized"
+    case denied         = "denied"
+    case notDetermined  = "notDetermined"
+    case restricted     = "restricted"
     
     public var description: String {
         switch self {

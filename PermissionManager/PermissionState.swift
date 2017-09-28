@@ -11,18 +11,16 @@ import AVFoundation
 import Contacts
 import CoreBluetooth
 import CoreLocation
+import CoreMotion
 import EventKit
 import Photos
+import UserNotifications
 
 protocol PermissionState {
     var status: PermissionStatus { get }
 }
 
-protocol PermissionRequest {
-    func requestPermission()
-}
-
-final class BluetoothPermissionState: PermissionState {
+extension BluetoothPermission: PermissionState {
     var status: PermissionStatus {
         switch CBPeripheralManager.authorizationStatus() {
         case .authorized:       return .authorized
@@ -33,7 +31,7 @@ final class BluetoothPermissionState: PermissionState {
     }
 }
 
-final class CameraPermissionState: PermissionState {
+extension CameraPermission: PermissionState {
     var status: PermissionStatus {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:       return .authorized
@@ -44,7 +42,7 @@ final class CameraPermissionState: PermissionState {
     }
 }
 
-final class ContactPermissionState: PermissionState {
+extension ContactPermission: PermissionState {
     var status: PermissionStatus {
         if #available(iOS 9.0, *) {
             switch CNContactStore.authorizationStatus(for: .contacts) {
@@ -64,7 +62,7 @@ final class ContactPermissionState: PermissionState {
     }
 }
 
-final class EventPermissionState: PermissionState {
+extension EventPermission: PermissionState {
     var status: PermissionStatus {
         switch EKEventStore.authorizationStatus(for: .event) {
         case .authorized:       return .authorized
@@ -75,7 +73,7 @@ final class EventPermissionState: PermissionState {
     }
 }
 
-final class LocationAlwaysState: PermissionState {
+extension LocationAlwaysPermission: PermissionState {
     var status: PermissionStatus {
         guard CLLocationManager.locationServicesEnabled() else { return .restricted }
         
@@ -89,7 +87,7 @@ final class LocationAlwaysState: PermissionState {
     }
 }
 
-final class LocationWhileUsingState: PermissionState {
+extension LocationWhileUsingPermission: PermissionState {
     var status: PermissionStatus {
         guard CLLocationManager.locationServicesEnabled() else { return .restricted }
         
@@ -103,7 +101,7 @@ final class LocationWhileUsingState: PermissionState {
     }
 }
 
-final class MicrophonePermissionState: PermissionState {
+extension MicrophonePermission: PermissionState {
     var status: PermissionStatus {
         switch AVAudioSession.sharedInstance().recordPermission() {
         case .granted:          return .authorized
@@ -113,19 +111,40 @@ final class MicrophonePermissionState: PermissionState {
     }
 }
 
-final class MotionPermissionState: PermissionState {
+extension MotionPermission: PermissionState {
     var status: PermissionStatus {
+//        let motionManager = CMMotionActivityManager()
+//        let rightNow = Date()
+//        motionManager.queryActivityStarting(from: rightNow, to: rightNow, to: .main) { (activities, error) in
+//            guard error == nil else {
+//                return
+//            }
+//
+//            motionManager.stopActivityUpdates()
+//        }
         return .notDetermined
     }
 }
 
-final class NotificationPermissionState: PermissionState {
+extension NotificationPermission: PermissionState {
     var status: PermissionStatus {
-        return .notDetermined
+        if #available(iOS 8.0, *) {
+            guard UIApplication.shared.isRegisteredForRemoteNotifications == true else {
+                return .denied
+            }
+            return .authorized
+        } else {
+            let types = UIApplication.shared.enabledRemoteNotificationTypes()
+            if types == UIRemoteNotificationType.alert {
+                return .authorized
+            } else {
+                return .denied
+            }
+        }
     }
 }
 
-final class PhotosPermissionState: PermissionState {
+extension PhotosPermission: PermissionState {
     var status: PermissionStatus {
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized:       return .authorized
@@ -136,7 +155,7 @@ final class PhotosPermissionState: PermissionState {
     }
 }
 
-final class ReminderPermissionState: PermissionState {
+extension ReminderPermission: PermissionState {
     var status: PermissionStatus {
         switch  EKEventStore.authorizationStatus(for: .reminder) {
         case .authorized:       return .authorized
