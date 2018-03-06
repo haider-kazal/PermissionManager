@@ -53,7 +53,11 @@ public final class PermissionManager {
             return
         }
         
-        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(settingsURL)
+        }
     }
     
     private func getStatus(from object: PermissionState) -> PermissionStatus {

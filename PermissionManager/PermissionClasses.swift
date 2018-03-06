@@ -6,13 +6,17 @@
 //  Copyright © 2017 Haider Ali Kazal. All rights reserved.
 //
 
+import Contacts
 import CoreLocation
 
 final class BluetoothPermission { }
 
 final class CameraPermission { }
 
-final class ContactPermission { }
+final class ContactPermission {
+    @available(iOS 9.0, *)
+    lazy var contactStore = CNContactStore()
+}
 
 final class EventPermission { }
 
