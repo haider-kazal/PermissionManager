@@ -101,7 +101,11 @@ extension LocationAlwaysPermission: PermissionRequest, CLLocationManagerDelegate
         }
         
         self.locationManager.requestAlwaysAuthorization()
-        self.completion = completion
+        
+        // A simple hack to stop calling completion twice.
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            self?.completion = completion
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -116,6 +120,8 @@ extension LocationAlwaysPermission: PermissionRequest, CLLocationManagerDelegate
         case .restricted:
             completion?(.restricted)
         }
+        
+        completion = nil
     }
 }
 
@@ -127,7 +133,11 @@ extension LocationWhileUsingPermission: PermissionRequest, CLLocationManagerDele
         }
         
         self.locationManager.requestWhenInUseAuthorization()
-        self.completion = completion
+        
+        // A simple hack to stop calling completion twice.
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            self?.completion = completion
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -142,6 +152,8 @@ extension LocationWhileUsingPermission: PermissionRequest, CLLocationManagerDele
         case .restricted:
             completion?(.restricted)
         }
+        
+        completion = nil
     }
 }
 

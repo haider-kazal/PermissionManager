@@ -75,7 +75,7 @@ public final class PermissionManager {
         case .events:
             requestPermission(for: EventPermission(), completion: completion)
         case .locationAlways:
-            requestPermission(for: locationWhileUsingPermission, completion: completion)
+            requestPermission(for: locationAlwaysPermission, completion: completion)
         case .locationWhileUsing:
             requestPermission(for: locationWhileUsingPermission, completion: completion)
         case .microphone:
