@@ -6,6 +6,8 @@
 //  Copyright © 2017 Haider Ali Kazal. All rights reserved.
 //
 
+import CoreLocation
+
 final class BluetoothPermission { }
 
 final class CameraPermission { }
@@ -14,9 +16,25 @@ final class ContactPermission { }
 
 final class EventPermission { }
 
-final class LocationAlwaysPermission { }
+final class LocationAlwaysPermission: NSObject {
+    var completion: PermissionRequestCompletion = nil
+    
+    lazy var locationManager: CLLocationManager = {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        return locationManager
+    }()
+}
 
-final class LocationWhileUsingPermission { }
+final class LocationWhileUsingPermission: NSObject {
+    var completion: PermissionRequestCompletion = nil
+    
+    lazy var locationManager: CLLocationManager = {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        return locationManager
+    }()
+}
 
 final class MicrophonePermission { }
 

@@ -6,17 +6,12 @@
 //  Copyright © 2017 Haider Ali Kazal. All rights reserved.
 //
 
-import AddressBook
-import AVFoundation
-import Contacts
-import CoreBluetooth
-import CoreMotion
-import EventKit
-import Photos
-
-// MARK: - PermissionManager singleton initialization
-public class PermissionManager {
+public final class PermissionManager {
+    // MARK: PermissionManager singleton initialization
     public static let shared = PermissionManager()
+    
+    private lazy var locationAlwaysPermission = LocationAlwaysPermission()
+    private lazy var locationWhileUsingPermission = LocationWhileUsingPermission()
     
     private init() { }
     
@@ -31,9 +26,9 @@ public class PermissionManager {
         case .events:
             return getStatus(from: EventPermission())
         case .locationAlways:
-            return getStatus(from: LocationAlwaysPermission())
+            return getStatus(from: locationAlwaysPermission)
         case .locationWhileUsing:
-            return getStatus(from: LocationWhileUsingPermission())
+            return getStatus(from: locationWhileUsingPermission)
         case .microphone:
             return getStatus(from: MicrophonePermission())
         case .motion:
@@ -76,9 +71,9 @@ public class PermissionManager {
         case .events:
             requestPermission(for: EventPermission(), completion: completion)
         case .locationAlways:
-            requestPermission(for: LocationAlwaysPermission(), completion: completion)
+            requestPermission(for: locationWhileUsingPermission, completion: completion)
         case .locationWhileUsing:
-            requestPermission(for: LocationWhileUsingPermission(), completion: completion)
+            requestPermission(for: locationWhileUsingPermission, completion: completion)
         case .microphone:
             requestPermission(for: MicrophonePermission(), completion: completion)
         case .motion:

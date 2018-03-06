@@ -87,29 +87,55 @@ extension EventPermission: PermissionRequest {
     }
 }
 
-extension LocationAlwaysPermission: PermissionRequest {
+extension LocationAlwaysPermission: PermissionRequest, CLLocationManagerDelegate {
     func requestPermission(completion: PermissionRequestCompletion) {
         guard status == .notDetermined else {
             completion?(status)
             return
         }
         
-        let locationManager = CLLocationManager()
-        locationManager.requestAlwaysAuthorization()
-        completion?(nil) // No callback to know status
+        self.locationManager.requestAlwaysAuthorization()
+        self.completion = completion
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways:
+            completion?(.authorized)
+        case .authorizedWhenInUse,
+             .denied:
+            completion?(.denied)
+        case .notDetermined:
+            completion?(.notDetermined)
+        case .restricted:
+            completion?(.restricted)
+        }
     }
 }
 
-extension LocationWhileUsingPermission: PermissionRequest {
+extension LocationWhileUsingPermission: PermissionRequest, CLLocationManagerDelegate {
     func requestPermission(completion: PermissionRequestCompletion) {
         guard status == .notDetermined else {
             completion?(status)
             return
         }
         
-        let locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
-        completion?(nil)
+        self.locationManager.requestWhenInUseAuthorization()
+        self.completion = completion
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways,
+             .authorizedWhenInUse:
+            completion?(.authorized)
+        case .denied:
+            completion?(.denied)
+        case .notDetermined:
+            completion?(.notDetermined)
+        case .restricted:
+            completion?(.restricted)
+        }
     }
 }
 
