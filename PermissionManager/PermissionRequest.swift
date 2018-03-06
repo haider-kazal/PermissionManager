@@ -54,16 +54,22 @@ extension ContactPermission: PermissionRequest {
             return
         }
         
-        let contactStore = CNContactStore()
-        contactStore.requestAccess(for: .contacts) { (granted, error) in
-            guard error == nil else {
-                completion?(self.status)
-                return
+        if #available(iOS 9.0, *) {
+            self.contactStore.requestAccess(for: .contacts) { (granted, error) in
+                guard error == nil else {
+                    completion?(self.status)
+                    return
+                }
+                
+                let requestStatus: PermissionStatus = granted ? .authorized : .denied
+                completion?(requestStatus)
             }
-            
-            let requestStatus: PermissionStatus = granted ? .authorized : .denied
-            completion?(requestStatus)
+        } else {
+            ABAddressBookRequestAccessWithCompletion(nil) { (isGranted, error) in
+                isGranted ? completion?(.authorized): completion?(.denied)
+            }
         }
+        
     }
 }
 
